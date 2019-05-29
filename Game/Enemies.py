@@ -24,7 +24,8 @@ class Mob(object):
         self.health = 2
         self.visible = True
 
-    def draw(self, win):
+    def draw(self,  win):
+       
         self.move()
         if self.visible:
             if self.walkCount + 1 >= 27:

@@ -2,6 +2,7 @@ import pygame, random, Player1
 from Shooting import Projectile
 from Player1 import Player
 from Enemies import Mob
+from random import randint
 import os, sys
 
 pygame.init()
@@ -16,11 +17,11 @@ bg = pygame.image.load('imgs/BasicBG.png')
 #The code below is for the clock. This allows me to set the FPS for the game etc.
 clock = pygame.time.Clock()
 
-#bulletSound1 = pygame.mixer.Sound("Sounds/Pew.wav")
-#hitSound = pygame.mixer.Sound("Sounds/bruh.wav")
+bulletSound1 = pygame.mixer.Sound("Sounds/Pew.wav")
+hitSound = pygame.mixer.Sound("Sounds/bruh.wav")
 
-#music = pygame.mixer.music.load("Sounds/Music2.mp3")
-#pygame.mixer.music.play(-1)
+music = pygame.mixer.music.load("Sounds/Music2.mp3")
+pygame.mixer.music.play(-1)
 score = 0
 
 #Used as variables for boundrys etc
@@ -51,7 +52,7 @@ def redrawGameWindow():
 #mainloop
 scoreFont = pygame.font.SysFont("comicsans", 30, True)
 mobs = pygame.sprite.Group()
-Zombie = Mob (100, 410, 40, 57, 500)
+Zombie = Mob(100, 410 , 40, 57, 450)
 LRbullets = []
 UDbullets = []
 cowboy = Player(300, 410 , 28, 56)
@@ -82,7 +83,7 @@ while run:
             if bullet.y - bullet.radius < Zombie.hitbox[1] + Zombie.hitbox[3] and bullet.y + bullet.radius > Zombie.hitbox[1]:
                 if bullet.x + bullet.radius > Zombie.hitbox[0] and bullet.x - bullet.radius < Zombie.hitbox[0] + Zombie.hitbox[2]:
                     Zombie.hit()
-                    #hitSound.play()
+                    hitSound.play()
                     score += 1
                     LRbullets.pop(LRbullets.index(bullet))
 
@@ -96,7 +97,7 @@ while run:
             if bullet.y - bullet.radius < Zombie.hitbox[1] + Zombie.hitbox[3] and bullet.y + bullet.radius > Zombie.hitbox[1]:
                 if bullet.x + bullet.radius > Zombie.hitbox[0] and bullet.x - bullet.radius < Zombie.hitbox[0] + Zombie.hitbox[2]:
                     Zombie.hit()
-                    #hitSound.play()
+                    hitSound.play()
                     score += 1
                     UDbullets.pop(UDbullets.index(bullet))
 
@@ -108,7 +109,7 @@ while run:
     keys = pygame.key.get_pressed()
             # shooting left with left key facing any direction
     if keys [pygame.K_LEFT] and SlowShoot == 0:
-            #bulletSound1.play()
+        bulletSound1.play()
         if cowboy.left:
             facing = x  = - 1
         else: 
@@ -118,7 +119,7 @@ while run:
         SlowShoot = 1    
     #shooting right with right key facing any direction
     if keys [pygame.K_RIGHT] and SlowShoot == 0:
-        #bulletSound1.play()
+        bulletSound1.play()
         if cowboy.right:
             facing = x  = 1
         else:
@@ -129,7 +130,7 @@ while run:
 
      #shooting up with up key facing any direction
     if keys [pygame.K_UP] and SlowShoot == 0:
-        #bulletSound1.play()
+        bulletSound1.play()
         if cowboy.up:
             facing = x  = 1
         else:
@@ -140,7 +141,7 @@ while run:
 
     #shooting down with down key facing any direction
     if keys [pygame.K_DOWN] and SlowShoot == 0:
-        #bulletSound1.play()
+        bulletSound1.play()
         if cowboy.down:
             facing = x  = -1
         else:
