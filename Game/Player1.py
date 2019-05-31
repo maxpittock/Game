@@ -13,9 +13,9 @@ green = (34,177,76)
 win = pygame.display.set_mode((500,500))
 
 class Player(object):
-    def __init__(self, x,y,width,height):
-        self.x = x
-        self.y = y
+    def __init__(self, px,py,width,height):
+        self.px = px
+        self.py = py
         self.width = width
         self.height = height
         self.vel = 5
@@ -25,7 +25,7 @@ class Player(object):
         self.isJump = False
         self.jumpCount = 10
         self.walkCount = 0
-        self.hitbox = (self.x + 0, self.y + 0, 28, 56)
+        self.hitbox = (self.px + 0, self.py + 0, 28, 56)
         self.health = 6
         self.visible = True
         # The elements in the hitbox are (top left x, top left y, width, height)
@@ -36,21 +36,21 @@ class Player(object):
 
             if not(self.standing):
                 if self.left:
-                    win.blit(walkLeft[self.walkCount//3], (self.x,self.y))
+                    win.blit(walkLeft[self.walkCount//3], (self.px,self.py))
                     self.walkCount += 1
                 elif self.right: 
-                    win.blit(walkRight[self.walkCount//3],  (self.x,self.y))
+                    win.blit(walkRight[self.walkCount//3],  (self.px,self.py))
                     self.walkCount += 1
             else:
                 if self.left:
-                    win.blit(walkLeft[0], (self.x ,self.y))
+                    win.blit(walkLeft[0], (self.px ,self.py))
                 else: 
-                    win.blit(walkRight[0], (self.x ,self.y))
+                    win.blit(walkRight[0], (self.px ,self.py))
             
             pygame.draw.rect(win, (255,0,0), (self.hitbox[0], self.hitbox[1] - 20, 50, 10))
             pygame.draw.rect(win, (0,128,0), (self.hitbox[0], self.hitbox[1] - 20, 50 - (50/6 * (6 - self.health)), 10))
-            self.hitbox = (self.x + 0, self.y + 0, 40, 57)
-            self.hitbox = (self.x + 0, self.y + 0, 28, 56) 
+            self.hitbox = (self.px + 0, self.py + 0, 40, 57)
+            self.hitbox = (self.px + 0, self.py + 0, 28, 56) 
         #pygame.draw.rect(win, (255,0,0), self.hitbox,2) # To draw the hit box around the player
 
     def health_bar(self,win):

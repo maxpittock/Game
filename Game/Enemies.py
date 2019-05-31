@@ -1,5 +1,4 @@
 import pygame
-//
 
 win = pygame.display.set_mode((500,500))
 
@@ -11,15 +10,15 @@ class Mob(object):
     walkRight = [pygame.image.load("imgs/ESR2.png"), pygame.image.load("imgs/ESR1.png"), pygame.image.load("imgs/ESR1.png"), pygame.image.load("imgs/ESR2.png"), pygame.image.load("imgs/ESR2.png"), pygame.image.load("imgs/ESR1.png"), pygame.image.load("imgs/ESR1.png"), pygame.image.load("imgs/ESR2.png"), pygame.image.load("imgs/ESR2.png"),]
     
 
-    def __init__(self, x, y, width, height, end):
-        self.x = x
-        self.y = y
+    def __init__(self, ex, ey, width, height, end):
+        self.ex = ex
+        self.ey = ey
         self.width = width
         self.height = height
-        self.path = [x, end]
+        self.path = [ex, end]
         self.walkCount = 0
         self.vel = 3
-        self.hitbox = (self.x + 0, self.y + 0, 40, 57)
+        self.hitbox = (self.ex + 0, self.ey + 0, 40, 57)
         self.health = 2
         self.visible = True
         
@@ -32,29 +31,29 @@ class Mob(object):
                 self.walkCount = 0
         
             if self.vel > 0:
-                win.blit(self.walkRight[self.walkCount//3], (self.x,self.y))
+                win.blit(self.walkRight[self.walkCount//3], (self.ex,self.ey))
                 self.walkCount += 1
             else:
-                win.blit(self.walkLeft[self.walkCount//3], (self.x,self.y))
+                win.blit(self.walkLeft[self.walkCount//3], (self.ex,self.ey))
                 self.walkCount += 1
 
             
             pygame.draw.rect(win, (255,0,0), (self.hitbox[0], self.hitbox[1] - 20, 50, 10))
             pygame.draw.rect(win, (0,128,0), (self.hitbox[0], self.hitbox[1] - 20, 50 - (50/3 * (2 - self.health)), 10))
-            self.hitbox = (self.x + 0, self.y + 0, 40, 57)
+            self.hitbox = (self.ex + 0, self.ey + 0, 40, 57)
             #pygame.draw.rect(win, (255,0,0), self.hitbox,2)
             
     def move(self):
         if self.vel > 0:
-            if self.x < self.path[1] + self.vel:
-                self.x += self.vel
+            if self.ex < self.path[1] + self.vel:
+                self.ex += self.vel
             else:
                 self.vel = self.vel * -1
-                self.x += self.vel
+                self.ex += self.vel
                 self.walkCount = 0
         else:
-            if self.x > self.path[0] - self.vel:
-                self.x += self.vel
+            if self.ex > self.path[0] - self.vel:
+                self.ex += self.vel
             else:
                 self.vel = self.vel * -1
                 self.walkCount = 0
