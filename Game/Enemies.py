@@ -1,7 +1,7 @@
 import pygame
+//
 
-
-
+win = pygame.display.set_mode((500,500))
 
 #this deifnes the enemy by drawing it and creating a path for it etc.
 class Mob(object):
@@ -9,8 +9,7 @@ class Mob(object):
     #attackLeft = [pygame.image.load("imgs/ELA1.png"), pygame.image.load("imgs/ELA2.png"), pygame.image.load("imgs/ELA3.png"), pygame.image.load("imgs/ELA4.png"), pygame.image.load("imgs/ELA1.png"),pygame.image.load("imgs/ELA2.png"),pygame.image.load("imgs/ELA3.png"),pygame.image.load("imgs/ELA4.png"),pygame.image.load("imgs/ELA1.png")]
     walkLeft = [pygame.image.load("imgs/EWL3.png"), pygame.image.load("imgs/EWL1.png"), pygame.image.load("imgs/EWL1.png"), pygame.image.load("imgs/EWL3.png"), pygame.image.load("imgs/EWL3.png"),pygame.image.load("imgs/EWL1.png"),pygame.image.load("imgs/EWL1.png"),pygame.image.load("imgs/EWL3.png"),pygame.image.load("imgs/EWL3.png")]
     walkRight = [pygame.image.load("imgs/ESR2.png"), pygame.image.load("imgs/ESR1.png"), pygame.image.load("imgs/ESR1.png"), pygame.image.load("imgs/ESR2.png"), pygame.image.load("imgs/ESR2.png"), pygame.image.load("imgs/ESR1.png"), pygame.image.load("imgs/ESR1.png"), pygame.image.load("imgs/ESR2.png"), pygame.image.load("imgs/ESR2.png"),]
-    walkUp = [pygame.image.load("imgs/ESU2.png"), pygame.image.load("imgs/ESU1.png"), pygame.image.load("imgs/ESU1.png"), pygame.image.load("imgs/ESU2.png"), pygame.image.load("imgs/ESU2.png"),pygame.image.load("imgs/ESU1.png"),pygame.image.load("imgs/ESU1.png"),pygame.image.load("imgs/ESU2.png"),pygame.image.load("imgs/ESU2.png")]
-    walkDown = [pygame.image.load("imgs/ESR.png"), pygame.image.load("imgs/EFL.png"), pygame.image.load("imgs/EFL.png"), pygame.image.load("imgs/EFR.png"), pygame.image.load("imgs/EFR.png"),pygame.image.load("imgs/EFL.png"),pygame.image.load("imgs/EFL.png"),pygame.image.load("imgs/EFR.png"),pygame.image.load("imgs/EFR.png")]
+    
 
     def __init__(self, x, y, width, height, end):
         self.x = x
@@ -23,6 +22,7 @@ class Mob(object):
         self.hitbox = (self.x + 0, self.y + 0, 40, 57)
         self.health = 2
         self.visible = True
+        
 
     def draw(self,  win):
        
@@ -58,11 +58,10 @@ class Mob(object):
             else:
                 self.vel = self.vel * -1
                 self.walkCount = 0
-
-
+      
     def hit(self): 
         if self.health > 0:
             self.health -= 1 
-        else:
+        else: 
             self.visible = False
-        print('hit')
+        
